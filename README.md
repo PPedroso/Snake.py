@@ -8,4 +8,4 @@ The objective of this project is to get a better understanding of the Python pro
 TODO
 
 ## Preview
-TOOD
+TODO
