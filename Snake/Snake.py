@@ -19,27 +19,66 @@ class Square(pygame.sprite.Sprite):
         self.surface = pygame.Surface(UNIT_SIZE)
         self.rectangle = self.surface.get_rect()
 
-square1 = Square();
+square1 = Square()
 
 def draw_at(square,x,y):
-    pygame.draw.rect(screen,GREEN,square1.rectangle);
+    pygame.draw.rect(screen,GREEN,(x,y,10,10),1);
 
 # Main game loop
 
+class Position():
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+        self.x_modifier = 0
+        self.y_modifier = 0
+    def move(self):
+        self.x += self.x_modifier
+        self.y += self.y_modifier
+        if(self.x) > 800:
+            self.x = 0
+        if(self.y) > 600:
+            self.y = 0
+        if(self.x) < 0:
+            self.x = 800
+        if(self.y) < 0:
+            self.y = 600
+   
+pos = Position()
+
 while not game_over:
+
+    screen.fill((0,0,0))
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            if pygame.K_ESCAPE:
-                game_over = True
+            # if pygame.K_ESCAPE:
+            #     game_over = True
+            
+            if pygame.K_DOWN:
+                pos.x_modifier = 0
+                pos.y_modifier = -1
+            
+            if pygame.K_UP:
+                pos.x_modifier = 0
+                pos.y_modifier = 1
+
+            if pygame.K_LEFT:
+                pos.x_modifier = -1
+                pos.y_modifier = 0
+
+            if pygame.K_RIGHT:
+                pos.x_modifier = 1
+                pos.y_modifier = 0
         
         if event.type == pygame.QUIT:
             game_over = True
 
 
-    draw_at(square1,40,40)
+    draw_at(square1,pos.x,pos.y)
+    pos.move()
     
-    pygame.display.update();
+    pygame.display.update()
 
     
 
