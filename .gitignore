@@ -128,3 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /Snake/.vs/Snake/v16/TestStore/0/000.testlog
+/Snake/Snake/text.txt
+/Snake/Snake/Training.py
+/Snake/text.txt
+/Snake/Training.py
