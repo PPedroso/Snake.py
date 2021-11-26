@@ -1,8 +1,8 @@
 # Snake.py
-Snake game in python
+Snake game in python using pygame
 
 ## Purpose
-The objective of this project is to get a better understanding of the Python programming language
+The objective of this project is to get a better understanding of the Python programming language and the pygame module
 
 ## How to start
 * Clone repo
