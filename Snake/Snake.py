@@ -1,21 +1,22 @@
 import pygame
-import random
+from food import Food
+from player import Player
 
 
-screen_size = (800,600)
+SCREEN_SIZE = (800,600)
 
 # Initial configurations
 pygame.display.set_caption("Snake.py")
 color = (255,255,255)
 rectangle = pygame.Rect(5,5,60,60)
-screen = pygame.display.set_mode(screen_size)
+screen = pygame.display.set_mode(SCREEN_SIZE)
 pygame.init()
 game_over = False
-GREEN = (0,255,0)
+GREEN = (255,255,0)
 UNIT_SIZE = (10,10)
 
 
-# Functions and class definitioNs
+# Functions and class definitions
 class Square(pygame.sprite.Sprite):
     def __init__(self):
         super(Square,self).__init__()
@@ -23,47 +24,14 @@ class Square(pygame.sprite.Sprite):
         self.rectangle = self.surface.get_rect()
 
 def draw_at(x,y):
-    pygame.draw.rect(screen,GREEN,(x,y,10,10),1);
-
-# Main game loop
-
-class Position():
-    def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.x_modifier = 0
-        self.y_modifier = 0
-    def move(self):
-        self.x += self.x_modifier
-        self.y += self.y_modifier
-        if(self.x) > 800:
-            self.x = 0
-        if(self.y) > 600:
-            self.y = 0
-        if(self.x) < 0:
-            self.x = 800
-        if(self.y) < 0:
-            self.y = 600
-
-class Food():
-    def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.generate()
-
-    def generate(self):
-        self.x = random.randint(0,screen_size[0])
-        self.y = random.randint(0,screen_size[1])
-        self.draw()
-    
-    def draw(self):
-        draw_at(self.x,self.y)
+    pygame.draw.rect(screen,GREEN,(x,y,10,10),1)
 
 
 
-   
-pos = Position()
-food = Food()
+ # Main game loop 
+
+pos = Player()
+food = Food(SCREEN_SIZE[0],SCREEN_SIZE[1])
 
 while not game_over:
 
@@ -99,10 +67,10 @@ while not game_over:
     
     if(food.x == pos.x and food.y == pos.y):
         food.generate()
-
-    food.draw()
-      
-
+    
+    food_coords = food.coords()
+    draw_at(food_coords[0],food_coords[1])
+    
     pygame.display.update()
 
     
