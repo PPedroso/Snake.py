@@ -1,17 +1,13 @@
-import random
-
 class Food():
-    def __init__(self, width,height):
-        self.x = 0
-        self.y = 0
+    def __init__(self, width,height,x,y):
+        self.x = x
+        self.y = y
         self.width = width
         self.height = height
 
-        self.generate()
-
-    def generate(self):
-        self.x = random.randint(0,self.width)
-        self.y = random.randint(0,self.height)
+    def generate_at(self,x,y):
+        self.x = x
+        self.y = y
 
     def coords(self):
         return (self.x,self.y)
