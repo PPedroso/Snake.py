@@ -52,22 +52,22 @@ while not game_over:
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            # if pygame.K_ESCAPE:
-            #     game_over = True
+            if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+                game_over = True
             
-            if pygame.K_DOWN:
-                pos.x_modifier = 0
-                pos.y_modifier = -1
-            
-            if pygame.K_UP:
+            if pygame.key.get_pressed()[pygame.K_DOWN]:
                 pos.x_modifier = 0
                 pos.y_modifier = 1
+            
+            if pygame.key.get_pressed()[pygame.K_UP]:
+                pos.x_modifier = 0
+                pos.y_modifier = -1
 
-            if pygame.K_LEFT:
+            if pygame.key.get_pressed()[pygame.K_LEFT]:
                 pos.x_modifier = -1
                 pos.y_modifier = 0
 
-            if pygame.K_RIGHT:
+            if pygame.key.get_pressed()[pygame.K_RIGHT]:
                 pos.x_modifier = 1
                 pos.y_modifier = 0
         
