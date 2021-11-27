@@ -1,11 +1,14 @@
 import pygame
+import random
 
+
+screen_size = (800,600)
 
 # Initial configurations
 pygame.display.set_caption("Snake.py")
 color = (255,255,255)
 rectangle = pygame.Rect(5,5,60,60)
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode(screen_size)
 pygame.init()
 game_over = False
 GREEN = (0,255,0)
@@ -19,9 +22,7 @@ class Square(pygame.sprite.Sprite):
         self.surface = pygame.Surface(UNIT_SIZE)
         self.rectangle = self.surface.get_rect()
 
-square1 = Square()
-
-def draw_at(square,x,y):
+def draw_at(x,y):
     pygame.draw.rect(screen,GREEN,(x,y,10,10),1);
 
 # Main game loop
@@ -43,8 +44,26 @@ class Position():
             self.x = 800
         if(self.y) < 0:
             self.y = 600
+
+class Food():
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+        self.generate()
+
+    def generate(self):
+        self.x = random.randint(0,screen_size[0])
+        self.y = random.randint(0,screen_size[1])
+        self.draw()
+    
+    def draw(self):
+        draw_at(self.x,self.y)
+
+
+
    
 pos = Position()
+food = Food()
 
 while not game_over:
 
@@ -75,9 +94,15 @@ while not game_over:
             game_over = True
 
 
-    draw_at(square1,pos.x,pos.y)
+    draw_at(pos.x,pos.y)
     pos.move()
     
+    if(food.x == pos.x and food.y == pos.y):
+        food.generate()
+
+    food.draw()
+      
+
     pygame.display.update()
 
     
