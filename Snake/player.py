@@ -25,11 +25,6 @@ class Player():
         if(self.y) < 0:
             self.y = 600
 
-    def draw(self,screen): 
-        pygame.draw.rect(screen, self.playerSettings.COLOR,(self.x,self.y,self.screenSettings.UNIT_SIDE,self.screenSettings.UNIT_SIDE),1)
-        if self.debug:
-            self.display_info(screen)
-
     def move_up(self):
         self.x_modifier = 0
         self.y_modifier = -1 * self.screenSettings.UNIT_SIDE
@@ -46,7 +41,16 @@ class Player():
         self.x_modifier = 1 * self.screenSettings.UNIT_SIDE
         self.y_modifier = 0
 
+    def draw(self,screen): 
+        pygame.draw.rect(screen, self.playerSettings.COLOR,(self.x,self.y,self.screenSettings.UNIT_SIDE,self.screenSettings.UNIT_SIDE),1,5)
+        if self.debug:
+            self.display_info(screen)
+    
+#Debug
+
     def display_info(self,screen):
         font = pygame.font.SysFont(self.mainSettings.DEBUG_FONT, self.mainSettings.DEBUG_FONT_SIZE)
         text = font.render(str(f'x:{self.x} y:{self.y}'), True, self.mainSettings.DEBUG_FONT_COLOR)
         screen.blit(text, (self.x + self.screenSettings.UNIT_SIDE,self.y- self.screenSettings.UNIT_SIDE))
+
+    
