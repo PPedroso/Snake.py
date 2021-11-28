@@ -3,10 +3,9 @@
 Snake game
 
 ## Bugs
+* There's a line or column outside of the screen. Sometimes the player goes there and disappears from the screen and sometimes the food is generated in that area and is unreacheable
 
 ## Features
-* Add coordinates near the player and the food
-* Make snake consume the food and the food reapper after
 * Fill the shapes instead of being hollow
 * Change the food to be diferent than the snake
 * Make the snake grow when consumming the good

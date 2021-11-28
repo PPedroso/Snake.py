@@ -2,7 +2,7 @@ import pygame
 from settings import MainSettings,PlayerSettings,ScreenSettings
 
 class Player():
-    def __init__(self):
+    def __init__(self,debug):
         self.screenSettings = ScreenSettings()
         self.playerSettings = PlayerSettings()
         self.mainSettings = MainSettings()
@@ -11,6 +11,7 @@ class Player():
         self.y = 0
         self.x_modifier = 1 * self.step
         self.y_modifier = 0
+        self.debug = debug
         
     def move(self):
         self.x += self.x_modifier
@@ -26,6 +27,8 @@ class Player():
 
     def draw(self,screen): 
         pygame.draw.rect(screen, self.playerSettings.COLOR,(self.x,self.y,self.screenSettings.UNIT_SIDE,self.screenSettings.UNIT_SIDE),1)
+        if self.debug:
+            self.display_info(screen)
 
     def move_up(self):
         self.x_modifier = 0
@@ -44,6 +47,6 @@ class Player():
         self.y_modifier = 0
 
     def display_info(self,screen):
-        font = pygame.font.SysFont(self.mainSettings.FONT, self.mainSettings.FONT_SIZE)
-        text = font.render(str(f'x:{self.x} y:{self.y}'), True, self.mainSettings.FONT_COLOR)
-        screen.blit(text, (0,0))
+        font = pygame.font.SysFont(self.mainSettings.DEBUG_FONT, self.mainSettings.DEBUG_FONT_SIZE)
+        text = font.render(str(f'x:{self.x} y:{self.y}'), True, self.mainSettings.DEBUG_FONT_COLOR)
+        screen.blit(text, (self.x + self.screenSettings.UNIT_SIDE,self.y- self.screenSettings.UNIT_SIDE))

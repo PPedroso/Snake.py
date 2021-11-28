@@ -1,10 +1,8 @@
 import pygame
 import time
-import random
 from food import Food
 from player import Player
 from settings import MainSettings,ScreenSettings,GameSettings
-
 
 screenSettings = ScreenSettings()
 mainSettings = MainSettings()
@@ -22,18 +20,18 @@ def show_score():
     text = font.render(str(f'Score:{gameSettings.score}'), True, mainSettings.FONT_COLOR)
     screen.blit(text, (0,0))
 
-player = Player()
-food = Food()
+player = Player(True)
+food = Food(True)
 
 # Main game loop 
 
 while not gameSettings.game_over:
 
-    screen.fill((0,0,0))
-    # display_info()
+    screen.fill(screenSettings.COLOR)
+    show_score()
+    
     player.draw(screen)
     food.draw(screen)
-    show_score()
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -63,7 +61,7 @@ while not gameSettings.game_over:
     
     pygame.display.update()
     
-    time.sleep(0.03)
+    time.sleep(mainSettings.REFRESH_RATE)
 
     
 
