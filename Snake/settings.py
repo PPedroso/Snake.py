@@ -13,7 +13,6 @@ class GameSettings:
     def __init__(self):
         self.game_over = False
         self.score = 0
-        self.snake_pieces = 1
         
 class ScreenSettings:
     def __init__(self):

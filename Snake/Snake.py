@@ -4,20 +4,50 @@ from settings import MainSettings,PlayerSettings,ScreenSettings
 
 class Snake():
     snake = []
+        
+    def get_head(self):
+        return self.snake[0]
+
+    def get_tail(self):
+        return self.snake[-1]
     
-    def __init__(self,x,y,debug) -> None:
+    def __init__(self,x,y,debug):
         self.snake.append(SnakeSection(x,y,debug))
 
     def move(self):
         for snake_section in self.snake:
             snake_section.move()
     
-    def draw(self):
+    def move_up(self):
         for snake_section in self.snake:
-            snake_section.draw()
+            snake_section.change_direction_up()
 
-    def add_section(self,debug):
-        self.snake.append(self.x, self.y, debug)
+    def move_down(self):
+        for snake_section in self.snake:
+            snake_section.change_direction_down()
+
+    def move_left(self):
+        for snake_section in self.snake:
+            snake_section.change_direction_left()
+
+    def move_right(self):
+        for snake_section in self.snake:
+            snake_section.change_direction_right()
+
+    def draw(self,screen):
+        for snake_section in self.snake:
+            snake_section.draw(screen)
+
+    def add_section(self):
+        
+        head = self.get_head()
+        tail = self.get_tail()
+
+        snake_section = SnakeSection(tail.x - tail.x_modifier, tail.y - tail.y_modifier,False)
+        snake_section.x_modifier =  head.x_modifier
+        snake_section.y_modifier =  head.y_modifier
+
+        self.snake.append(snake_section)
 
 class SnakeSection():
     def __init__(self,x,y,debug):
@@ -25,7 +55,7 @@ class SnakeSection():
         self.playerSettings = PlayerSettings()
         self.mainSettings = MainSettings()
         self.step = self.screenSettings.UNIT_SIDE
-        self.x = x 
+        self.x = x
         self.y = y
         self.x_modifier = 1 * self.step
         self.y_modifier = 0
@@ -44,19 +74,19 @@ class SnakeSection():
         if(self.y) < 0:
             self.y = 600
 
-    def move_up(self):
+    def change_direction_up(self):
         self.x_modifier = 0
         self.y_modifier = -1 * self.screenSettings.UNIT_SIDE
 
-    def move_down(self):
+    def change_direction_down(self):
         self.x_modifier = 0
         self.y_modifier = 1 * self.screenSettings.UNIT_SIDE
 
-    def move_left(self):
+    def change_direction_left(self):
         self.x_modifier = -1 * self.screenSettings.UNIT_SIDE
         self.y_modifier = 0
 
-    def move_right(self):
+    def change_direction_right(self):
         self.x_modifier = 1 * self.screenSettings.UNIT_SIDE
         self.y_modifier = 0
 

@@ -1,7 +1,7 @@
 import pygame
 import time
 from food import Food
-from snake import SnakeSection
+from snake import Snake
 from settings import MainSettings,ScreenSettings,GameSettings
 
 screenSettings = ScreenSettings()
@@ -20,21 +20,22 @@ def show_score():
     text = font.render(str(f'Score:{gameSettings.score}'), True, mainSettings.FONT_COLOR)
     screen.blit(text, (0,0))
 
-player = SnakeSection(gameSettings.snake_pieces,screenSettings.UNIT_SIDE*5,screenSettings.UNIT_SIDE*5,True)
-food = Food(True)
 
-snake = [player]
+snake = Snake(screenSettings.UNIT_SIDE*5,screenSettings.UNIT_SIDE*5,True)
+food = Food(True)
 
 # Main game loop 
 
-while not gameSettings.game_over:
 
+
+while not gameSettings.game_over:
+    
     screen.fill(screenSettings.COLOR)
     show_score()
-    
-    for bit in snake:
-        bit.draw(screen)
+        
+    snake.draw(screen)
     food.draw(screen)
+
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -42,28 +43,27 @@ while not gameSettings.game_over:
                 gameSettings.game_over = True
             
             if pygame.key.get_pressed()[pygame.K_DOWN]:
-                player.move_down()
+                snake.move_down()
             
             if pygame.key.get_pressed()[pygame.K_UP]:
-                player.move_up()
+                snake.move_up()
 
             if pygame.key.get_pressed()[pygame.K_LEFT]:
-                player.move_left()
+                snake.move_left()
 
             if pygame.key.get_pressed()[pygame.K_RIGHT]:
-                player.move_right()
+                snake.move_right()
     
         if event.type == pygame.QUIT:
             game_over = True
     
-    for bit in snake:
-        bit.move()
+    snake.move()
     
-    if(food.x == player.x and food.y == player.y):
+    head = snake.get_head()
+    if(food.x == head.x and food.y == head.y):
         food.generate()
         gameSettings.score+=1
-        gameSettings.snake_pieces+=1
-        snake.append(SnakeSection(player.x-1, player.y, gameSettings.snake_pieces,True))
+        snake.add_section()
 
     
     pygame.display.update()
