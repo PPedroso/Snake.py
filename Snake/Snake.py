@@ -1,4 +1,5 @@
 import pygame
+import time
 from settings import MainSettings,PlayerSettings,ScreenSettings
 
 
@@ -17,22 +18,27 @@ class Snake():
     def move(self):
         for snake_section in self.snake:
             snake_section.move()
+
+        # This loop is a disgrace, fix it
+        max_len = len(self.snake)-1
+        for snake_section in enumerate(self.snake):
+            if max_len > 0:
+                self.snake[max_len].x_modifier = self.snake[max_len-1].x_modifier
+                self.snake[max_len].y_modifier = self.snake[max_len-1].y_modifier
+            max_len-=1
+
     
     def move_up(self):
-        for snake_section in self.snake:
-            snake_section.change_direction_up()
+        self.get_head().change_direction_up()
 
     def move_down(self):
-        for snake_section in self.snake:
-            snake_section.change_direction_down()
+        self.get_head().change_direction_down()
 
     def move_left(self):
-        for snake_section in self.snake:
-            snake_section.change_direction_left()
+        self.get_head().change_direction_left()
 
     def move_right(self):
-        for snake_section in self.snake:
-            snake_section.change_direction_right()
+        self.get_head().change_direction_right()
 
     def draw(self,screen):
         for snake_section in self.snake:
@@ -44,8 +50,8 @@ class Snake():
         tail = self.get_tail()
 
         snake_section = SnakeSection(tail.x - tail.x_modifier, tail.y - tail.y_modifier,False)
-        snake_section.x_modifier =  head.x_modifier
-        snake_section.y_modifier =  head.y_modifier
+        snake_section.x_modifier =  tail.x_modifier
+        snake_section.y_modifier =  tail.y_modifier
 
         self.snake.append(snake_section)
 

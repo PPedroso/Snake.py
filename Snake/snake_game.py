@@ -26,8 +26,6 @@ food = Food(True)
 
 # Main game loop 
 
-
-
 while not gameSettings.game_over:
     
     screen.fill(screenSettings.COLOR)
