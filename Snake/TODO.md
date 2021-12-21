@@ -9,8 +9,4 @@ Snake game
 
 ## Features
 * Implement gameover when hitting walls
-* Implement gameover when the snake hits itself
 * Stylize the game
-
-## Currently doing
-    

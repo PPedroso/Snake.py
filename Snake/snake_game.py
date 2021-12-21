@@ -53,9 +53,12 @@ while not gameSettings.game_over:
                 snake.move_right()
     
         if event.type == pygame.QUIT:
-            game_over = True
+            gameSettings.game_over = True
     
-    snake.move()
+    if not snake.move():
+        print('colision')
+        gameSettings.game_over = True
+        
     
     head = snake.get_head()
     if(food.x == head.x and food.y == head.y):

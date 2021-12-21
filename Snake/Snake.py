@@ -16,7 +16,11 @@ class Snake():
         self.snake.append(SnakeSection(x,y,debug))
 
     def move(self):
-        for snake_section in self.snake:
+        head = self.get_head()
+        head.move()
+        for snake_section in self.snake[1:]:
+            if snake_section.x == head.x and snake_section.y == head.y:
+                return False
             snake_section.move()
 
         # This loop is a disgrace, fix it
@@ -26,7 +30,7 @@ class Snake():
                 self.snake[max_len].x_modifier = self.snake[max_len-1].x_modifier
                 self.snake[max_len].y_modifier = self.snake[max_len-1].y_modifier
             max_len-=1
-
+        return True
     
     def move_up(self):
         self.get_head().change_direction_up()
