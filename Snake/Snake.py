@@ -18,18 +18,16 @@ class Snake():
     def move(self):
         head = self.get_head()
         head.move()
+
         for snake_section in self.snake[1:]:
             if snake_section.x == head.x and snake_section.y == head.y:
                 return False
             snake_section.move()
 
-        # This loop is a disgrace, fix it
-        max_len = len(self.snake)-1
-        for snake_section in enumerate(self.snake):
-            if max_len > 0:
-                self.snake[max_len].x_modifier = self.snake[max_len-1].x_modifier
-                self.snake[max_len].y_modifier = self.snake[max_len-1].y_modifier
-            max_len-=1
+        for i in range(len(self.snake)-1,0,-1):
+            if i > 0:
+                self.snake[i].x_modifier = self.snake[i-1].x_modifier
+                self.snake[i].y_modifier = self.snake[i-1].y_modifier
         return True
     
     def move_up(self):
