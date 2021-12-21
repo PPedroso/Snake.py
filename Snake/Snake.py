@@ -1,5 +1,4 @@
 import pygame
-import time
 from settings import MainSettings,PlayerSettings,ScreenSettings
 
 
@@ -18,6 +17,12 @@ class Snake():
     def move(self):
         head = self.get_head()
         head.move()
+
+        if(head.x) > ScreenSettings().SCREEN_SIZE[0] or (head.x) < 0:
+            return False
+        if(head.y) > ScreenSettings().SCREEN_SIZE[1] or (head.y) < 0:
+            return False
+
 
         for snake_section in self.snake[1:]:
             if snake_section.x == head.x and snake_section.y == head.y:
@@ -47,8 +52,6 @@ class Snake():
             snake_section.draw(screen)
 
     def add_section(self):
-        
-        head = self.get_head()
         tail = self.get_tail()
 
         snake_section = SnakeSection(tail.x - tail.x_modifier, tail.y - tail.y_modifier,False)
@@ -73,14 +76,6 @@ class SnakeSection():
     def move(self):
         self.x += self.x_modifier
         self.y += self.y_modifier
-        if(self.x) > 800:
-            self.x = 0
-        if(self.y) > 600:
-            self.y = 0
-        if(self.x) < 0:
-            self.x = 800
-        if(self.y) < 0:
-            self.y = 600
 
     def change_direction_up(self):
         self.x_modifier = 0

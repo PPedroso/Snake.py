@@ -10,3 +10,5 @@ Snake game
 ## Features
 * Implement gameover when hitting walls
 * Stylize the game
+
+## Currently doing

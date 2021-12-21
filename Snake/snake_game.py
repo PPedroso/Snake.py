@@ -56,7 +56,6 @@ while not gameSettings.game_over:
             gameSettings.game_over = True
     
     if not snake.move():
-        print('colision')
         gameSettings.game_over = True
         
     
