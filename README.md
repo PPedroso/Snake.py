@@ -10,7 +10,10 @@ The objective of this project is to get a better understanding of the Python pro
 * Run <code>python snake.py</code>
 
 ## Controls
-TODO
+* Up arrow: Moves snake up
+* Down arrow: Moves snake down
+* Left arrow: Moves snake left
+* Right arrow: Moves snake right
 
 ## Preview
 TODO
