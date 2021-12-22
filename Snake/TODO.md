@@ -11,4 +11,7 @@ Snake game
 * Implement gameover when hitting walls
 * Stylize the game
 
+## Documentation 
+* Record game preview
+
 ## Currently doing
