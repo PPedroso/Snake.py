@@ -5,14 +5,14 @@ from settings import MainSettings,PlayerSettings,ScreenSettings
 class Snake():
     snake = []
         
+    def __init__(self,x,y,debug):
+        self.snake.append(SnakeSection(x,y,debug))
+    
     def get_head(self):
         return self.snake[0]
 
     def get_tail(self):
         return self.snake[-1]
-    
-    def __init__(self,x,y,debug):
-        self.snake.append(SnakeSection(x,y,debug))
 
     def move(self):
         head = self.get_head()
@@ -22,7 +22,6 @@ class Snake():
             return False
         if(head.y) > ScreenSettings().SCREEN_SIZE[1] or (head.y) < 0:
             return False
-
 
         for snake_section in self.snake[1:]:
             if snake_section.x == head.x and snake_section.y == head.y:
@@ -101,7 +100,7 @@ class SnakeSection():
     def change_direction_right(self):
         if(self.y_modifier == 0):
             return
-            
+
         self.x_modifier = 1 * self.screenSettings.UNIT_SIDE
         self.y_modifier = 0
 
