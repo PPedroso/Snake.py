@@ -78,18 +78,30 @@ class SnakeSection():
         self.y += self.y_modifier
 
     def change_direction_up(self):
+        if(self.x_modifier == 0):
+            return
+        
         self.x_modifier = 0
         self.y_modifier = -1 * self.screenSettings.UNIT_SIDE
 
     def change_direction_down(self):
+        if(self.x_modifier == 0):
+            return
+        
         self.x_modifier = 0
         self.y_modifier = 1 * self.screenSettings.UNIT_SIDE
 
     def change_direction_left(self):
+        if(self.y_modifier == 0):
+            return
+        
         self.x_modifier = -1 * self.screenSettings.UNIT_SIDE
         self.y_modifier = 0
 
     def change_direction_right(self):
+        if(self.y_modifier == 0):
+            return
+            
         self.x_modifier = 1 * self.screenSettings.UNIT_SIDE
         self.y_modifier = 0
 
