@@ -8,4 +8,7 @@ Snake game
 ## Features
 * Stylize the game
 
+## Documentation 
+* Record game preview
+
 ## Currently doing
