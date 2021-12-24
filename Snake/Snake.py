@@ -7,6 +7,9 @@ class Snake():
         
     def __init__(self,x,y,debug):
         self.snake.append(SnakeSection(x,y,debug))
+        
+        for i in range(0,PlayerSettings().INITIAL_SIZE):
+            self.add_section()
     
     def get_head(self):
         return self.snake[0]

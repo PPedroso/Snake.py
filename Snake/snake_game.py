@@ -18,8 +18,7 @@ pygame.init()
 def show_score():
     font = pygame.font.SysFont(mainSettings.FONT, mainSettings.FONT_SIZE)
     text = font.render(str(f'Score:{gameSettings.score}'), True, mainSettings.FONT_COLOR)
-    screen.blit(text, (0,0))
-
+    screen.blit(text,(0,0))
 
 snake = Snake(screenSettings.UNIT_SIDE*5,screenSettings.UNIT_SIDE*5,True)
 food = Food(True)
