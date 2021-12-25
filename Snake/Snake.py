@@ -108,7 +108,7 @@ class SnakeSection():
         self.y_modifier = 0
 
     def draw(self,screen): 
-        pygame.draw.rect(screen, self.playerSettings.COLOR,(self.x,self.y,self.screenSettings.UNIT_SIDE,self.screenSettings.UNIT_SIDE),1,5)
+        pygame.draw.rect(screen, self.playerSettings.COLOR,(self.x,self.y,self.screenSettings.UNIT_SIDE,self.screenSettings.UNIT_SIDE),0,5)
         if self.debug:
             self.display_info(screen)
     

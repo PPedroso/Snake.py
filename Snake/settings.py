@@ -23,9 +23,9 @@ class ScreenSettings:
 
 class PlayerSettings:
     def __init__(self):
-        self.COLOR = (0,255,0)
+        self.COLOR = (28,131,8)
         self.INITIAL_SIZE = 4
 
 class FoodSettings:
     def __init__(self):
-        self.COLOR = (0,255,0)
+        self.COLOR = (188,26,26)

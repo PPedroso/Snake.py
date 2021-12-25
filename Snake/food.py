@@ -17,8 +17,8 @@ class Food():
         self.y = self.screenSettings.UNIT_SIDE * random.randint(0, (self.screenSettings.SCREEN_SIZE[1] - self.screenSettings.UNIT_SIDE) / (self.screenSettings.UNIT_SIDE))
         
     def draw(self,screen):
-        pygame.draw.circle(screen,self.foodSettings.COLOR,(self.x + self.screenSettings.UNIT_SIDE/2,self.y + self.screenSettings.UNIT_SIDE/2),self.screenSettings.UNIT_SIDE/2)
-        #  rect(screen, self.foodSettings.COLOR,(self.x,self.y,self.screenSettings.UNIT_SIDE,self.screenSettings.UNIT_SIDE),1)
+        pygame.draw.rect(screen,self.foodSettings.COLOR,(self.x,self.y,self.screenSettings.UNIT_SIDE,self.screenSettings.UNIT_SIDE),0,1)
+
         if self.debug:
             self.display_info(screen)
 
