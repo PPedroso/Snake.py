@@ -6,7 +6,6 @@ Snake game
 
 ## Features
 
-## Documentation 
-* Record game preview
+## Documentation
 
 ## Currently doing
