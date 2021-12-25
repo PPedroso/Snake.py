@@ -16,4 +16,4 @@ The objective of this project is to get a better understanding of the Python pro
 * Right arrow: Moves snake right
 
 ## Preview
-TODO
+![Animation](Snake/preview.gif)
